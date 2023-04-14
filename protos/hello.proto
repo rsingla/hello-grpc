@@ -12,6 +12,24 @@ message HelloResponse {
   string message = 1;
 }
 
+message PartyRequest {
+  string name = 1;
+  string description = 2;
+}
+
+
+message PartyResponse {
+  string name = 1;
+  string description = 2;
+  bool invite_sent = 3;
+  int32 cost = 4;
+  int32 remaining_passes = 5;
+}
+
+
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloResponse);
+
+  rpc LetsParty (PartyRequest) returns (PartyResponse);
+
 }

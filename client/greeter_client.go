@@ -19,9 +19,17 @@ func main() {
 	c := pb.NewGreeterClient(conn)
 
 	res, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: "Rajeev"})
+
 	if err != nil {
 		log.Fatalf("failed to call SayHello: %v", err)
 	}
 
 	log.Printf("response: %s", res.Message)
+
+	resParty, err := c.LetsParty(context.Background(), &pb.PartyRequest{Name: "Halloween Party", Description: "Halloween Party at Rajeev's place"})
+	if err != nil {
+		log.Fatalf("failed to call LetsParty: %v", err)
+	}
+
+	log.Printf("response: %s", resParty)
 }

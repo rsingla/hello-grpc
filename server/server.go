@@ -20,6 +20,18 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 	return resp, nil
 }
 
+func (s *server) LetsParty(ctx context.Context, in *pb.PartyRequest) (*pb.PartyResponse, error) {
+	resp := &pb.PartyResponse{}
+	resp.Name = in.Name
+	resp.Description = "Let's party " + in.Name
+	resp.InviteSent = true
+	resp.Cost = 1100
+	resp.RemainingPasses = 115
+
+	log.Printf("response: %s", resp)
+	return resp, nil
+}
+
 func main() {
 	lis, err := net.Listen("tcp", ":8080")
 	if err != nil {
