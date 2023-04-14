@@ -10,10 +10,14 @@ import (
 	pb "github.com/rsingla/hello-grpc/helloworld"
 )
 
-type server struct{}
+type server struct {
+	pb.UnimplementedGreeterServer
+}
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
-	return &pb.HelloResponse{Message: "Hello " + in.Name}, nil
+	resp := &pb.HelloResponse{Message: "Hello " + in.Name}
+	log.Printf("response: %s", resp.Message)
+	return resp, nil
 }
 
 func main() {
